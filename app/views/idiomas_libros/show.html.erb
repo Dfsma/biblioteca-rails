@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Idioma:</strong>
+  <%= @idiomas_libro.idioma_id %>
+</p>
+
+<p>
+  <strong>Libro:</strong>
+  <%= @idiomas_libro.libro_id %>
+</p>
+
+<%= link_to 'Edit', edit_idiomas_libro_path(@idiomas_libro) %> |
+<%= link_to 'Back', idiomas_libros_path %>
