@@ -10,19 +10,46 @@
       </ul>
     </div>
   <% end %>
-
+<div class="form-inputs">
   <div class="field">
-    <%= form.label :nombre %>
-    <%= form.text_field :nombre %>
+    <%= form.label :nombre, class:'' %>
+    <%= form.text_field :nombre, class:'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :idiomas %>
-    <%= collection_select(:libro, :idioma_ids, Idioma.all, :id, :nombre, {}, { :multiple => true } )%>
+    <%= collection_select(:libro, :idioma_ids, Idioma.all, :id, :nombre, {}, { :multiple => true, :class => 'form-control' } )%>
   </div>
 
-
-  <div class="actions">
+   <div class="actions">
     <%= form.submit %>
   </div>
+</div>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Idioma</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @libros.each do |libro| %>
+      <tr>
+        <td><%= libro.nombre %></td>
+        <td><%= libro.idiomas.map(&:nombre).join(", ") %></td>
+        <td><%= link_to 'Show', libro %></td>
+        <td><%= link_to 'Edit', edit_libro_path(libro) %></td>
+        <td><%= link_to 'Destroy', libro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Libro', new_libro_path %>
 <% end %>

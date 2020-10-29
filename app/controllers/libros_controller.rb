@@ -15,10 +15,12 @@ class LibrosController < ApplicationController
   # GET /libros/new
   def new
     @libro = Libro.new
+    @libros = Libro.all
   end
 
   # GET /libros/1/edit
   def edit
+    @libros = Libro.all
   end
 
   # POST /libros
