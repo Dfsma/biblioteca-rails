@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
   
+  resources :autors_libros
+  resources :autors
   resources :idiomas_libros
   resources :libros
   resources :idiomas

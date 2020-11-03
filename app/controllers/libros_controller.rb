@@ -35,9 +35,16 @@ class LibrosController < ApplicationController
       end
     end
 
+    params[:libro][:autor_ids].each do |autor_id|
+      unless autor_id.empty?
+      autor = Autor.find(autor_id)
+        @libro.autors << autor
+      end
+    end
+
     respond_to do |format|
       if @libro.save
-        format.html { redirect_to @libro, notice: 'Libro was successfully created.' }
+        format.html { redirect_to new_libro_path  , notice: 'Libro was successfully created.' }
         format.json { render :show, status: :created, location: @libro }
       else
         format.html { render :new }
@@ -51,7 +58,7 @@ class LibrosController < ApplicationController
   def update
     respond_to do |format|
       if @libro.update(libro_params)
-        format.html { redirect_to @libro, notice: 'Libro was successfully updated.' }
+        format.html { redirect_to new_libro_path, notice: 'Libro was successfully updated.' }
         format.json { render :show, status: :ok, location: @libro }
       else
         format.html { render :edit }
@@ -65,7 +72,7 @@ class LibrosController < ApplicationController
   def destroy
     @libro.destroy
     respond_to do |format|
-      format.html { redirect_to libros_url, notice: 'Libro was successfully destroyed.' }
+      format.html { redirect_to new_libro_path, notice: 'Libro was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -78,6 +85,6 @@ class LibrosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def libro_params
-      params.require(:libro).permit(:nombre, :idioma_id)
+      params.require(:libro).permit(:nombre, :idioma_id, :autor_id)
     end
 end

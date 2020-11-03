@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Autors Libros</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Libro</th>
+      <th>Autor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @autors_libros.each do |autors_libro| %>
+      <tr>
+        <td><%= autors_libro.libro_id %></td>
+        <td><%= autors_libro.autor_id %></td>
+        <td><%= link_to 'Show', autors_libro %></td>
+        <td><%= link_to 'Edit', edit_autors_libro_path(autors_libro) %></td>
+        <td><%= link_to 'Destroy', autors_libro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Autors Libro', new_autors_libro_path %>

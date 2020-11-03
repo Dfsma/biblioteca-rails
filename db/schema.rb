@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_23_220928) do
+ActiveRecord::Schema.define(version: 2020_11_03_181249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "autors", force: :cascade do |t|
+    t.string "nombre"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "autors_libros", force: :cascade do |t|
+    t.bigint "libro_id", null: false
+    t.bigint "autor_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["autor_id"], name: "index_autors_libros_on_autor_id"
+    t.index ["libro_id"], name: "index_autors_libros_on_libro_id"
+  end
 
   create_table "idiomas", force: :cascade do |t|
     t.string "nombre"
@@ -32,13 +47,12 @@ ActiveRecord::Schema.define(version: 2020_10_23_220928) do
 
   create_table "libros", force: :cascade do |t|
     t.string "nombre"
-    t.bigint "idioma_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["idioma_id"], name: "index_libros_on_idioma_id"
   end
 
+  add_foreign_key "autors_libros", "autors"
+  add_foreign_key "autors_libros", "libros"
   add_foreign_key "idiomas_libros", "idiomas"
   add_foreign_key "idiomas_libros", "libros"
-  add_foreign_key "libros", "idiomas"
 end
