@@ -10,6 +10,16 @@ class LibrosController < ApplicationController
   # GET /libros/1
   # GET /libros/1.json
   def show
+    respond_to do |format|
+      format.html     
+      format.pdf do
+          pdf = ParentPdf.new(@libro)
+          send_data pdf.render, filename: "libro_#{@libro.nombre}.pdf",
+                                type: "application/pdf",
+                                disposition: "inline"
+      end
+    end
+    
   end
 
   # GET /libros/new

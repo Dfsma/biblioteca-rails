@@ -27,7 +27,7 @@ gem 'stisla-rails'
 
 gem "font-awesome-rails"
 gem 'simple_form', '~> 5.0', '>= 5.0.2'
-
+gem 'prawn', '~>2.2.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
