@@ -66,6 +66,20 @@ class LibrosController < ApplicationController
   # PATCH/PUT /libros/1
   # PATCH/PUT /libros/1.json
   def update
+    params[:libro][:idioma_ids].each do |idioma_id|
+      unless idioma_id.empty?
+      idioma = Idioma.find(idioma_id)
+        @libro.idiomas << idioma
+      end
+    end
+
+    params[:libro][:autor_ids].each do |autor_id|
+      unless autor_id.empty?
+      autor = Autor.find(autor_id)
+        @libro.autors << autor
+      end
+    end
+
     respond_to do |format|
       if @libro.update(libro_params)
         format.html { redirect_to new_libro_path, notice: 'Libro was successfully updated.' }

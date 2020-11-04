@@ -1,4 +1,5 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Nombre:</strong>
@@ -6,10 +7,14 @@
 </p>
 
 <p>
-  <strong>Idioma:</strong>
+  <strong>Idiomas:</strong>
   <%= @libro.idiomas.map(&:nombre).join(', ') %>
 </p>
 
-<%= link_to 'Edit', edit_libro_path(@libro) %> |
-<%= link_to 'Back', libros_path %>
-<%= link_to 'print pdf', libro_path(@libro, format: "pdf"), :class => 'btn btn-sm btn-secondary' %>
+<%= link_to 'Editar', edit_libro_path(@libro) %><br>
+<i class="fas fa-file-pdf"><%= link_to 'Mostrar PDF', libro_path(@libro, format: "pdf"), :class => ' text-black pl-3' %></i><br>
+
+<%= link_to 'Volver Atrás', new_libro_path %>
+</div>
+
+
