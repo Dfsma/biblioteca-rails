@@ -1,22 +1,10 @@
-<%= form_with(model: idioma, local: true) do |form| %>
-  <% if idioma.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(idioma.errors.count, "error") %> prohibited this idioma from being saved:</h2>
+<div class="form-group">
+ <%= simple_form_for(@idioma, local: true) do |form| %>
+    <%= form.label :nombre, class:'' %>
+    <%= form.text_field :nombre, class:'form-control' %>
+  
 
-      <ul>
-        <% idioma.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+  
+    <%= form.button :submit, 'Aceptar', class: "btn btn-dark mt-4" %>
   <% end %>
-
-  <div class="field">
-    <%= form.label :nombre %>
-    <%= form.text_field :nombre %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
