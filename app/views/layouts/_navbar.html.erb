@@ -1,5 +1,4 @@
 <!------ Include the above in your HEAD tag ---------->
-
 <div class="page-wrapper chiller-theme toggled">
   <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
     <i class="fas fa-bars"></i>
@@ -7,7 +6,7 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href="#">pro sidebar</a>
+        <a href="#">Sistema de Biblioteca</a>
         <div id="close-sidebar">
           <i class="fas fa-times"></i>
         </div>
@@ -18,8 +17,8 @@
             alt="User picture">
         </div>
         <div class="user-info">
-          <span class="user-name">Jhon
-            <strong>Smith</strong>
+          <span class="user-name">
+            <strong><%= current_user.email %></strong>
           </span>
           <span class="user-role">Administrator</span>
           <span class="user-status">
@@ -47,28 +46,22 @@
           <li class="header-menu">
             <span>General</span>
           </li>
-          
-          
           <li class="sidebar-dropdown">
             <a href="<%= new_libro_path %>">
               <i class="fa fa-book"></i>
-              <span>LIBROS</span>
+              <span>Libros</span>
             </a>
           </li>
-
-
-
           <li class="sidebar-dropdown">
             <a href="<%= new_idioma_path %>">
               <i class="fa fa-shopping-cart"></i>
-              <span>IDIOMAS</span>
+              <span>Idiomas</span>
             </a>
           </li>
-
           <li class="sidebar-dropdown">
-            <a href="#">
+            <a href="<%= new_autor_path %>">
               <i class="far fa-gem"></i>
-              <span>Components</span>
+              <span>Autores</span>
             </a>
             <div class="sidebar-submenu">
               <ul>
@@ -90,8 +83,6 @@
               </ul>
             </div>
           </li>
-
-
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="fa fa-chart-line"></i>
@@ -114,9 +105,6 @@
               </ul>
             </div>
           </li>
-
-
-
           <li class="sidebar-dropdown">
             <a href="#">
               <i class="fa fa-globe"></i>
@@ -173,23 +161,27 @@
         <i class="fa fa-cog"></i>
         <span class="badge-sonar"></span>
       </a>
+      
       <a href="#">
-        <i class="fa fa-power-off"></i>
+        
+          <%= link_to destroy_user_session_path, method: :delete do %>
+           
+            <i class="fa fa-power-off"></i>
+              
+           
+          <% end %>
+        
       </a>
     </div>
   </nav>
   <!-- sidebar-wrapper  -->
   <main class="page-content">
     <div class="container-fluid">
-     
-      <hr>
-       <h1 class="text-center">SISTEMA DE BIBLIOTECA</h1>
-      <hr>
+      
       <div class="row">
-       <%= yield %>
+        <%= yield %>
       </div>
       <hr>
-
       <footer class="text-center">
         <div class="mb-2">
           <small>
@@ -202,17 +194,9 @@
           <a href="https://github.com/Dfsma" target="_blank">
             <img alt="GitHub followers" src="https://img.shields.io/badge/GitHub-Dfsma-blue" />
           </a>
-        
         </div>
       </footer>
     </div>
   </main>
   <!-- page-content" -->
 </div>
-
-
-
-
-
-
-

@@ -4,35 +4,35 @@
     <title></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-   
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-   
   </head>
-
   <body>
-  
-    <%= render 'layouts/navbar' %>
- 
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <% if user_signed_in? %>
+      <%= render 'layouts/navbar' %>
+    <% else %>
+     <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    <% end %>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
-  
     <script type="text/javascript">
-        jQuery(function ($) {
-          $("#close-sidebar").click(function() {
-            $(".page-wrapper").removeClass("toggled");
-          });
-          $("#show-sidebar").click(function() {
-            $(".page-wrapper").addClass("toggled");
-          });
-      });
-
+      jQuery(function ($) {
+        $("#close-sidebar").click(function() {
+          $(".page-wrapper").removeClass("toggled");
+        });
+        $("#show-sidebar").click(function() {
+          $(".page-wrapper").addClass("toggled");
+        });
+            });
     </script>
-    
   </body>
 </html>
