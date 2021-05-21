@@ -20,7 +20,13 @@
           <span class="user-name">
             <strong><%= current_user.email %></strong>
           </span>
-          <span class="user-role">Administrator</span>
+          <span class="user-role">
+            <% if current_user.role == 1 %>
+              <div>Administrador</div>
+            <% else %>
+              <div>Empleado</div>
+            <% end %>
+          </span>
           <span class="user-status">
             <i class="fa fa-circle"></i>
             <span>Online</span>
@@ -157,27 +163,18 @@
         <i class="fa fa-envelope"></i>
         <span class="badge badge-pill badge-success notification">7</span>
       </a>
-      <a href="#">
+      <a href="<%= edit_user_registration_path %>">
         <i class="fa fa-cog"></i>
-        <span class="badge-sonar"></span>
       </a>
-      
-      <a href="#">
-        
-          <%= link_to destroy_user_session_path, method: :delete do %>
-           
-            <i class="fa fa-power-off"></i>
-              
-           
-          <% end %>
-        
-      </a>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <i class="fa fa-power-off"></i>
+      <% end %>
     </div>
   </nav>
+  
   <!-- sidebar-wrapper  -->
   <main class="page-content">
     <div class="container-fluid">
-      
       <div class="row">
         <%= yield %>
       </div>

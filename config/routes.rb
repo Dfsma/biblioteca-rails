@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   resources :libros
   resources :idiomas
 
+  resources :users
 
+   
+  root 'libros#index', as: 'user_signedin'
+  
 
   devise_scope :user do
       root 'devise/sessions#new'
